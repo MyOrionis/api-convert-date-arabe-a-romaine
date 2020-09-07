@@ -3,11 +3,11 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class ConvertService {
 
-    /*création de la fonction de convertion
+    /*Création de la fonction de convertion
     récupereration d'un nombre en paramètre
      */
     integer_to_roman(num:number) {
-    //définition du tableau de convertion
+    //Définition du tableau de convertion
       const romain = {
       M: 1000,
       CM: 900,
@@ -23,7 +23,7 @@ export class ConvertService {
       IV: 4,
       I: 1
     };
-      //définition de ma variable de résultat à retourner
+      //Définition de ma variable de résultat à retourner
     let res = '';
 
     //Boucle qui parcours le tableau romain
