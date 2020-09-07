@@ -20,7 +20,7 @@ export class ConvertService {
         while (i--)
             //parcours le tableau pour trouver le bon nombre  romain
             roman_num = (key[+digits.pop() + (i * 10)] || "") + roman_num;
-        //regroupe les valeur et les renvoies en tableau
+        //prend toute les valeurs du tableau pour le joindre entre eux avec ou non un symbole  et renvoie un string
         return Array(+digits.join("") + 1).join("M") + roman_num;
     }
 }
