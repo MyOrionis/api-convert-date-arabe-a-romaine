@@ -4,23 +4,39 @@ import { Injectable } from '@nestjs/common';
 export class ConvertService {
 
     /*création de la fonction de convertion
-    récuperer un nombre en paramètre
+    récupereration d'un nombre en paramètre
      */
-    integer_to_roman(num:number): string {
+    integer_to_roman(num:number) {
+    //définition du tableau de convertion
+      const romain = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1
+    };
+      //définition de ma variable de résultat à retourner
+    let res = '';
 
-        //nombre conversion des chiffre en string et sépare dans un tableau
-        const digits = String(+num).split("");
-        //tableau des chiffres romains
-        const key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
-                "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
-                "","I","II","III","IV","V","VI","VII","VIII","IX"];
-        let roman_num = "";
-        let i = 3;
-        //boucle de conversion des chiffres arabe en romain
-        while (i--)
-            //parcours le tableau pour trouver le bon nombre  romain
-            roman_num = (key[+digits.pop() + (i * 10)] || "") + roman_num;
-        //prend toute les valeurs du tableau pour le joindre entre eux avec ou non un symbole  et renvoie un string
-        return Array(+digits.join("") + 1).join("M") + roman_num;
+    //Boucle qui parcours le tableau romain
+      // i = la clé du tableau
+    for (const i of Object.keys(romain)) {
+      // q récupere la valeur arrondit la plus basse du quotient de la division
+      const q = Math.floor(num / romain[i]);
+      //Soustrait la valeur de i multiplier par la valeur q
+      num -= q * romain[i];
+      //Ajoute le chiffre romain à la variable res
+      res += i.repeat(q);
     }
+
+    return res;
+  }
 }
